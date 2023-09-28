@@ -1788,3 +1788,181 @@ puma (5.6.7) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
 puma (5.6.7) lib/puma/request.rb:76:in `handle_request'
 puma (5.6.7) lib/puma/server.rb:443:in `process_client'
 puma (5.6.7) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/artworks/" for ::1 at 2023-09-28 14:09:03 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArtworksController#index as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 3123)
+
+
+Started GET "/artworks/" for ::1 at 2023-09-28 14:09:47 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 1609)
+
+
+Started GET "/artworks/" for ::1 at 2023-09-28 14:10:02 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 192)
+
+
+  
+SyntaxError (/Users/claudiaaziz/Desktop/AA/W6D3/practice-for-ch-rails-first-routes-long-practice-main/FirstRoutes/app/models/artwork.rb:14: syntax error, unexpected '?'
+...         artworks.artist_id = ? OR artwork_shares.viewer_id ...
+...                              ^
+/Users/claudiaaziz/Desktop/AA/W6D3/practice-for-ch-rails-first-routes-long-practice-main/FirstRoutes/app/models/artwork.rb:14: syntax error, unexpected '?'
+...OR artwork_shares.viewer_id = ?
+...                              ^
+/Users/claudiaaziz/Desktop/AA/W6D3/practice-for-ch-rails-first-routes-long-practice-main/FirstRoutes/app/models/artwork.rb:31: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/models/artwork.rb:14: syntax error, unexpected '?'
+app/models/artwork.rb:14: syntax error, unexpected '?'
+app/models/artwork.rb:31: syntax error, unexpected end-of-input, expecting `end'
+app/models/artwork.rb:14: syntax error, unexpected '?'
+app/models/artwork.rb:14: syntax error, unexpected '?'
+app/models/artwork.rb:31: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/artworks_controller.rb:3:in `index'
+Started GET "/artworks/" for ::1 at 2023-09-28 14:16:26 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+  [1m[36mArtwork Load (0.9ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" SELECT artworks.*
+        FROM
+            artworks
+        LEFT OUTER JOIN -- accounts for case where there is an artwork that hasnt been shared
+            artwork_shares ON artwork_shares.artwork_id = artworks.id WHERE (artworks.artist_id = ? OR artwork_shares.viewer_id = ?)[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 7.9ms | Allocations: 6676)
+
+
+  
+ActiveRecord::StatementInvalid (PG::SyntaxError: ERROR:  syntax error at or near "SELECT"
+LINE 1: SELECT "artworks".* FROM "artworks" SELECT artworks.*
+                                            ^
+):
+  
+app/controllers/artworks_controller.rb:4:in `index'
+Started POST "/artworks/" for ::1 at 2023-09-28 14:16:33 -0400
+Processing by ArtworksController#create as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 184)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: artwork):
+  
+app/controllers/artworks_controller.rb:12:in `create'
+Started GET "/artworks/" for ::1 at 2023-09-28 14:16:42 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+  [1m[36mArtwork Load (0.4ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" SELECT artworks.*
+        FROM
+            artworks
+        LEFT OUTER JOIN -- accounts for case where there is an artwork that hasnt been shared
+            artwork_shares ON artwork_shares.artwork_id = artworks.id WHERE (artworks.artist_id = ? OR artwork_shares.viewer_id = ?)[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.4ms | Allocations: 945)
+
+
+  
+ActiveRecord::StatementInvalid (PG::SyntaxError: ERROR:  syntax error at or near "SELECT"
+LINE 1: SELECT "artworks".* FROM "artworks" SELECT artworks.*
+                                            ^
+):
+  
+app/controllers/artworks_controller.rb:4:in `index'
+Started GET "/artworks/" for ::1 at 2023-09-28 14:17:03 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+  [1m[36mArtwork Load (0.4ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" SELECT *
+        FROM
+            artworks
+        LEFT OUTER JOIN -- accounts for case where there is an artwork that hasnt been shared
+            artwork_shares ON artwork_shares.artwork_id = artworks.id WHERE (artworks.artist_id = ? OR artwork_shares.viewer_id = ?)[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.4ms | Allocations: 2745)
+
+
+  
+ActiveRecord::StatementInvalid (PG::SyntaxError: ERROR:  syntax error at or near "SELECT"
+LINE 1: SELECT "artworks".* FROM "artworks" SELECT *
+                                            ^
+):
+  
+app/controllers/artworks_controller.rb:4:in `index'
+Started GET "/artworks/" for ::1 at 2023-09-28 14:17:48 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+  [1m[36mArtwork Load (0.4ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" SELECT artworks.*
+        FROM
+            artworks
+        LEFT OUTER JOIN 
+            artwork_shares ON artwork_shares.artwork_id = artworks.id WHERE (artworks.artist_id = ? OR artwork_shares.viewer_id = ?)[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.4ms | Allocations: 2752)
+
+
+  
+ActiveRecord::StatementInvalid (PG::SyntaxError: ERROR:  syntax error at or near "SELECT"
+LINE 1: SELECT "artworks".* FROM "artworks" SELECT artworks.*
+                                            ^
+):
+  
+app/controllers/artworks_controller.rb:4:in `index'
+Started GET "/artworks/" for ::1 at 2023-09-28 14:20:08 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+  [1m[36mArtwork Load (0.8ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" SELECT artworks.*
+        FROM
+            artworks
+        LEFT OUTER JOIN 
+            artwork_shares ON artwork_shares.artwork_id = artworks.id WHERE (artworks.artist_id = NULL OR artwork_shares.viewer_id = NULL)[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.8ms | Allocations: 2807)
+
+
+  
+ActiveRecord::StatementInvalid (PG::SyntaxError: ERROR:  syntax error at or near "SELECT"
+LINE 1: SELECT DISTINCT "artworks".* FROM "artworks" SELECT artworks...
+                                                     ^
+):
+  
+app/controllers/artworks_controller.rb:4:in `index'
+Started GET "/artworks/" for ::1 at 2023-09-28 14:20:45 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+  [1m[36mArtwork Load (2.7ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" SELECT *
+        FROM
+            artworks
+        LEFT OUTER JOIN 
+            artwork_shares ON artwork_shares.artwork_id = artworks.id WHERE (artworks.artist_id = NULL OR artwork_shares.viewer_id = NULL)[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 2.7ms | Allocations: 2781)
+
+
+  
+ActiveRecord::StatementInvalid (PG::SyntaxError: ERROR:  syntax error at or near "SELECT"
+LINE 1: SELECT DISTINCT "artworks".* FROM "artworks" SELECT *
+                                                     ^
+):
+  
+app/controllers/artworks_controller.rb:4:in `index'
+Started GET "/artworks/" for ::1 at 2023-09-28 14:20:52 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"user"=>{"name"=>"claudia"}}
+  [1m[36mArtwork Load (1.7ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" SELECT artworks
+        FROM
+            artworks
+        LEFT OUTER JOIN 
+            artwork_shares ON artwork_shares.artwork_id = artworks.id WHERE (artworks.artist_id = NULL OR artwork_shares.viewer_id = NULL)[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.7ms | Allocations: 2781)
+
+
+  
+ActiveRecord::StatementInvalid (PG::SyntaxError: ERROR:  syntax error at or near "SELECT"
+LINE 1: SELECT DISTINCT "artworks".* FROM "artworks" SELECT artworks
+                                                     ^
+):
+  
+app/controllers/artworks_controller.rb:4:in `index'

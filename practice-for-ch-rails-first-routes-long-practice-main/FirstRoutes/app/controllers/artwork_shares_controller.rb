@@ -21,8 +21,4 @@ class ArtworkSharesController < ApplicationController
             render json: { 'error': "share doesnt exist" }, status: 404
         end
     end 
-
-
-
-
 end 
