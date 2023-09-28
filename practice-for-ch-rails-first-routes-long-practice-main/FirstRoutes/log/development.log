@@ -2693,3 +2693,55 @@ FOREIGN KEY ("artwork_id")
   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 41], ["LIMIT", 1]]
   [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" ORDER BY "comments"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
   [1m[36mArtwork Load (0.5ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+Started GET "/users/7/artworks" for ::1 at 2023-09-28 15:44:03 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArtworksController#index as */*
+  Parameters: {"artwork_shares"=>{"viewer_id"=>"10", "artwork_id"=>"5"}, "user_id"=>"7"}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 230)
+
+
+  
+SyntaxError (/Users/eltionbehrami/Desktop/App Academy/Week 6/Day 3/practice-for-ch-rails-first-routes-long-practice-main/FirstRoutes/app/models/artwork.rb:15: syntax error, unexpected '.'
+                .where("artworks.artist_id = ?...
+                ^
+):
+  
+app/models/artwork.rb:15: syntax error, unexpected '.'
+app/models/artwork.rb:15: syntax error, unexpected '.'
+app/controllers/artworks_controller.rb:3:in `index'
+Started GET "/users/7/artworks" for ::1 at 2023-09-28 15:44:37 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"artwork_shares"=>{"viewer_id"=>"10", "artwork_id"=>"5"}, "user_id"=>"7"}
+  [1m[36mArtwork Load (3.3ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE (artworks.artist_id = NULL OR artwork_shares.viewer_id = NULL)[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 4.9ms | ActiveRecord: 3.3ms | Allocations: 7714)
+
+
+  [1m[36mArtwork Load (2.1ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE (artworks.artist_id = 7 OR artwork_shares.viewer_id = 7)[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mArtwork Load (0.5ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE (artworks.artist_id = 41 OR artwork_shares.viewer_id = 41)[0m
+Started GET "/users/41/artworks" for ::1 at 2023-09-28 15:47:09 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"artwork_shares"=>{"viewer_id"=>"10", "artwork_id"=>"5"}, "user_id"=>"41"}
+  [1m[36mArtwork Load (0.4ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE (artworks.artist_id = NULL OR artwork_shares.viewer_id = NULL)[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 893)
+
+
+Started GET "/users/41/artworks" for ::1 at 2023-09-28 15:47:14 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"artwork_shares"=>{"viewer_id"=>"10", "artwork_id"=>"5"}, "user_id"=>"41"}
+  [1m[36mArtwork Load (0.5ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE (artworks.artist_id = NULL OR artwork_shares.viewer_id = NULL)[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.5ms | Allocations: 824)
+
+
+Started GET "/users/41/artworks" for ::1 at 2023-09-28 15:48:54 -0400
+Processing by ArtworksController#index as */*
+  Parameters: {"artwork_shares"=>{"viewer_id"=>"10", "artwork_id"=>"5"}, "user_id"=>"41"}
+  [1m[36mArtwork Load (1.0ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE (artworks.artist_id = '41' OR artwork_shares.viewer_id = '41')[0m
+  ↳ app/controllers/artworks_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 4.0ms | ActiveRecord: 6.3ms | Allocations: 8590)
+
+

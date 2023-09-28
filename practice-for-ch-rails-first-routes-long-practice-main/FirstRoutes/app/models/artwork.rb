@@ -4,14 +4,16 @@ class Artwork < ApplicationRecord
     validates_uniqueness_of  :artist_id, scope: :title    
 
     def self.find_all_artworks(user_id)
-        Artwork.joins("
-        LEFT OUTER JOIN 
-            artwork_shares ON artwork_shares.artwork_id = artworks.id")
-            .where("artworks.artist_id = ? OR artwork_shares.viewer_id = ?", user_id, user_id)
-            .distinct
+        # Artwork.joins("
+        # LEFT OUTER JOIN 
+        #     artwork_shares ON artwork_shares.artwork_id = artworks.id")
+        #     .where("artworks.artist_id = ? OR artwork_shares.viewer_id = ?", user_id, user_id)
+        #     .distinct
 
 
-        # Artwork.left_outer_joins(:shares).where()    
+        Artwork.left_outer_joins(:shares)
+                .where("artworks.artist_id = ? OR artwork_shares.viewer_id = ?", user_id, user_id)  
+                .distinct
     end
 
     belongs_to :artist,
