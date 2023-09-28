@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_201709) do
     t.bigint "viewer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artwork_id"], name: "index_artwork_shares_on_artwork_id", unique: true
+    t.index ["artwork_id", "viewer_id"], name: "index_artwork_shares_on_artwork_id_and_viewer_id", unique: true
     t.index ["viewer_id"], name: "index_artwork_shares_on_viewer_id"
   end
 
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_201709) do
     t.bigint "artist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artist_id"], name: "index_artworks_on_artist_id"
+    t.index ["artist_id", "title"], name: "index_artworks_on_artist_id_and_title", unique: true
     t.index ["image_url"], name: "index_artworks_on_image_url", unique: true
   end
 

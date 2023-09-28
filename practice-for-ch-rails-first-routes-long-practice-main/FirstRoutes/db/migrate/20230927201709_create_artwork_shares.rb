@@ -5,7 +5,7 @@ class CreateArtworkShares < ActiveRecord::Migration[7.0]
       t.references :viewer, foreign_key: {to_table: :users}, null: false 
       t.timestamps
     end
-    add_index :artwork_shares, :artwork_id, unique: true 
+    add_index :artwork_shares, [:artwork_id, :viewer_id], unique: true 
     add_foreign_key :artwork_shares, :artworks, column: :artwork_id 
   end
 end

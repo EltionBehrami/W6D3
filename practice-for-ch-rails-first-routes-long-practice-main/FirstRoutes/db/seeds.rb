@@ -19,7 +19,7 @@ artwork1 = Artwork.create!(title: "mona lisa", artist_id: eltion.id, image_url: 
 artwork2 = Artwork.create!(title: "starry night", artist_id: claudia.id, image_url: "www.facebook.com")
 artwork3 = Artwork.create!(title: "water bottle", artist_id: jenny.id, image_url: "www.instagram.com")
 
-artwork_share1 = ArtworkShare.create!(artwork_id: artwork1.id, viewer_id: eltion.id)
+artwork_share1 = ArtworkShare.create!(artwork_id: artwork3.id, viewer_id: eltion.id)
 artwork_share2 = ArtworkShare.create!(artwork_id: artwork2.id, viewer_id: claudia.id)
 
 
